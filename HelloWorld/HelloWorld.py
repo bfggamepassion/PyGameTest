@@ -40,6 +40,8 @@ circle_player_speed = 1
 
 # Boucle principale du programme
 running = True
+
+clock = pygame.time.Clock()
 while running:
 
     # Gestion des événements
@@ -75,5 +77,7 @@ while running:
     if circle.y > 600:
         circle.y = 0
 
+    clock.tick(60)
+    
 # Quitter Pygame
 pygame.quit()
