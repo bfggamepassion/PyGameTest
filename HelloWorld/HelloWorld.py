@@ -1,5 +1,7 @@
 import pygame
+import lib_Circle
 
+# Cette fonction c'est juste pour le fun !!
 def eratosthene(n):
     primes = [True] * (n+1)
     p = 2
@@ -10,13 +12,16 @@ def eratosthene(n):
         p += 1
     return [i for i in range(2, n+1) if primes[i]]
 
+# On dit bonjour, c'est toujours plus poli !
 print("")
 print("Hello World !")
 print("")
 
+# Calcule les nombres premier jusque 250 et affiche les 50 premiers de la liste
 nombres_premiers = eratosthene(250)
 print(nombres_premiers[:50])
 
+#Initilisation de PyGame
 pygame.init()
 
 # Définir les dimensions de la fenêtre
@@ -26,24 +31,9 @@ screen_height = 600
 # Créer la fenêtre
 screen = pygame.display.set_mode((screen_width, screen_height))
 
-# Définir les coordonnées du cercle
-#circle_x = screen_width // 2
-#circle_y = screen_height // 2
-circle_x = 0
-circle_y = 0
+circle = lib_Circle.Cercle(0,0,50,255,0,0)
+circle_player = lib_Circle.Cercle(screen_width // 2,screen_height // 2,50,255,255,0)
 
-circle_radius = 50
-
-# Définir la couleur du cercle
-circle_color = (255, 0, 0)  # Rouge
-
-# Définir les coordonnées initiales du cercle
-circle_player_x = screen_width // 2
-circle_player_y = screen_height // 2
-circle_player_radius = 50
-
-# Définir la couleur du cercle
-circle_player_color = (255, 255, 0)  # Jaune
 
 # Définir la vitesse de déplacement du cercle
 circle_player_speed = 1
@@ -60,30 +50,30 @@ while running:
  # Déplacement du cercle avec les touches curseurs
     keys = pygame.key.get_pressed()
     if keys[pygame.K_LEFT]:
-        circle_player_x -= circle_player_speed
+        circle_player.x -= circle_player_speed
     if keys[pygame.K_RIGHT]:
-        circle_player_x += circle_player_speed
+        circle_player.x += circle_player_speed
     if keys[pygame.K_UP]:
-        circle_player_y -= circle_player_speed
+        circle_player.y -= circle_player_speed
     if keys[pygame.K_DOWN]:
-        circle_player_y += circle_player_speed
+        circle_player.y += circle_player_speed
 
     # Effacer l'écran
     screen.fill((255, 255, 255))  # Blanc
 
     # Dessiner le cercle
-    pygame.draw.circle(screen, circle_player_color, (circle_player_x, circle_player_y), circle_player_radius)
-    pygame.draw.circle(screen, circle_color, (circle_x, circle_y), circle_radius)
+    circle_player.show(screen)
+    circle.show(screen)
 
     # Rafraîchir l'écran
     pygame.display.flip()
-    circle_x = circle_x + 1
-    circle_y = circle_y + 1
+    circle.x = circle.x + 1
+    circle.y = circle.y + 1
 
-    if circle_x > 800:
-        circle_x = 0
-    if circle_y > 600:
-        circle_y = 0
+    if circle.x > 800:
+        circle.x = 0
+    if circle.y > 600:
+        circle.y = 0
 
 # Quitter Pygame
 pygame.quit()
