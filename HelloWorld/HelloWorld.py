@@ -36,7 +36,7 @@ circle_player = lib_Circle.Cercle(screen_width // 2,screen_height // 2,50,255,25
 
 
 # Définir la vitesse de déplacement du cercle
-circle_player_speed = 1
+circle_player_speed = 5
 
 # Boucle principale du programme
 running = True
